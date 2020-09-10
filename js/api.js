@@ -3,8 +3,16 @@ class API{
         this.apikey = apikey;
     }
 
-    async obtenerMonedas(){
+    async obtenerMonedasAll(){
         const url = `https://min-api.cryptocompare.com/data/all/coinlist?api_key=${this.apikey}`;
+        const monedasAPI =  await fetch(url);
+        const monedas = await monedasAPI.json();
+
+        return {monedas}
+    }
+
+    async obtenerMonedasTop10(){
+        const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${this.apikey}`; 
         const monedasAPI =  await fetch(url);
         const monedas = await monedasAPI.json();
 
